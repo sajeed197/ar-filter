@@ -284,8 +284,8 @@
         let facingMode = 'user';
 
         const filters = {
-            'rr-logo': './assets/rrlogo.png',
-            'royal-crown': './assets/kathakali.jpeg',
+            'rr-logo': './assets/kathakali.png',
+            'royal-crown': './assets/kathakali.png',
             'team-mask': './assets/mask.png'
         };
 
@@ -301,8 +301,15 @@
             const { renderer, scene, camera } = mindarThree;
             
             // Add lighting
-            const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-            scene.add(light);
+             // Add lighting
+             let hemisphereLight = new THREE.HemisphereLight(16777215,12303359, 1);
+            const directionalLight = new THREE.DirectionalLight('white', 0.6);
+            directionalLight.position.set(0, 5, 0);
+            directionalLight.lookAt(0, 0, 0);
+            const ambeintLight = new THREE.AmbientLight('white', 0.4);
+            scene.add(hemisphereLight);
+            scene.add(directionalLight);
+            scene.add(ambeintLight);
 
             // Create face mesh
             faceMesh = mindarThree.addFaceMesh();
